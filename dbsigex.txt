@@ -1,0 +1,152 @@
+drop database if exists dbsigex;
+create database dbsigex;
+use dbsigex;
+
+create table muni
+(cod_muni int primary key,
+desc_muni varchar (30),
+pass varchar (10)) engine=INNODB;
+
+create table usuario
+(cod_usu int primary key,
+user varchar (30),
+pass varchar (9),
+nombre varchar (50)) engine=INNODB;
+
+create table plan
+(cod_plan int primary key,
+desc_plan varchar (30)) engine=INNODB;
+
+create table expte
+(num_expte int,
+letra_expte char,
+anio_expte year,
+conv int,
+aborigen bool,
+cant_desem int,
+extracto varchar (400),
+f_inicio date,
+f_termino date,
+cod_muni int,
+monto_total float(2),
+observ varchar (200),
+primary key (num_expte, letra_expte, anio_expte)) engine=INNODB;
+
+create table desem
+(num_expte int,
+letra_expte char,
+anio_expte year,
+num_des int,
+monto float(2),
+f_cert date,
+primary key (num_expte, letra_expte, anio_expte, num_des)) engine=INNODB;
+
+create table utilizo
+(cod_usu int,
+num_expte int,
+letra_expte char,
+anio_expte year,
+fecha date,
+hora time,
+creo bool,
+modif bool,
+borro bool,
+primary key (cod_usu, num_expte, letra_expte, anio_expte, fecha, hora)) engine=INNODB;
+
+create table incluye
+(cod_plan int,
+num_expte int,
+letra_expte char,
+anio_expte year,
+cant int,
+primary key (cod_plan, num_expte, letra_expte, anio_expte)) engine=INNODB;
+
+insert muni values (1,'25 DE MAYO', '123');
+insert muni values (2,'9 DE JULIO', '123');
+insert muni values (3,'ALBA POSSE', '123');
+insert muni values (4,'ALMAFUERTE', '123');
+insert muni values (5,'APOSTOLES', '123');
+insert muni values (6,'ARISTOBULO DEL VALLE', '123');
+insert muni values (7,'ARROYO DEL MEDIO', '123');
+insert muni values (8,'AZARA', '123');
+insert muni values (9,'BERNARDO DE IRIGOYEN', '123');
+insert muni values (10,'BONPLAND', '123');
+insert muni values (11,'CAA YARI', '123');
+insert muni values (12,'CAMPO GRANDE', '123');
+insert muni values (13,'CAMPO RAMON', '123');
+insert muni values (14,'CAMPO VIERA', '123');
+insert muni values (15,'CANDELARIA', '123');
+insert muni values (16,'CAPIOVI', '123');
+insert muni values (17,'CARAGUATAY', '123');
+insert muni values (18,'CERRO AZUL', '123');
+insert muni values (19,'CERRO CORA', '123');
+insert muni values (20,'COLONIA ALBERDI', '123');
+insert muni values (21,'COLONIA AURORA', '123');
+insert muni values (22,'COLONIA DELICIA', '123');
+insert muni values (23,'COLONIA POLANA', '123');
+insert muni values (24,'COLONIA VICTORIA', '123');
+insert muni values (25,'COLONIA WANDA', '123');
+insert muni values (26,'COMANDANTE ANDRESITO', '123');
+insert muni values (27,'CONCEPCION DE LA SIERRA', '123');
+insert muni values (28,'CORPUS', '123');
+insert muni values (29,'DOS ARROYOS', '123');
+insert muni values (30,'DOS DE MAYO', '123');
+insert muni values (31,'EL ALCAZAR', '123');
+insert muni values (32,'EL SOBERBIO', '123');
+insert muni values (33,'ELDORADO', '123');
+insert muni values (34,'FACHINAL', '123');
+insert muni values (35,'FLORENTINO AMEGHINO', '123');
+insert muni values (36,'GARUHAPE', '123');
+insert muni values (37,'GARUPA', '123');
+insert muni values (38,'GENERAL ALVEAR', '123');
+insert muni values (39,'GENERAL URQUIZA', '123');
+insert muni values (40,'GOBERNADOR LOPEZ', '123');
+insert muni values (41,'GOBERNADOR ROCA', '123');
+insert muni values (42,'GUARANI', '123');
+insert muni values (43,'HIPOLITO YRIGOYEN', '123');
+insert muni values (44,'ITACARUARE', '123');
+insert muni values (45,'JARDIN AMERICA', '123');
+insert muni values (46,'LEANDRO N. ALEM', '123');
+insert muni values (47,'LORETO', '123');
+insert muni values (48,'LOS HELECHOS', '123');
+insert muni values (49,'MARTIRES', '123');
+insert muni values (50,'MOJON GRANDE', '123');
+insert muni values (51,'MONTECARLO', '123');
+insert muni values (52,'OBERA', '123');
+insert muni values (53,'OLEGARIO V. ANDRADE', '123');
+insert muni values (54,'PANAMBI', '123');
+insert muni values (55,'POSADAS', '123');
+insert muni values (56,'PROFUNDIDAD', '123');
+insert muni values (57,'PUERTO ESPERANZA', '123');
+insert muni values (58,'PUERTO IGUAZU', '123');
+insert muni values (59,'PUERTO LEONI', '123');
+insert muni values (60,'PUERTO LIBERTAD', '123');
+insert muni values (61,'PUERTO PIRAY', '123');
+insert muni values (62,'PUERTO RICO', '123');
+insert muni values (63,'RUIZ DE MONTOYA', '123');
+insert muni values (64,'SAN ANTONIO', '123');
+insert muni values (65,'SAN IGNACIO', '123');
+insert muni values (66,'SAN JAVIER', '123');
+insert muni values (67,'SAN JOSE', '123');
+insert muni values (68,'SAN MARTIN', '123');
+insert muni values (69,'SAN PEDRO', '123');
+insert muni values (70,'SAN VICENTE', '123');
+insert muni values (71,'SANTA ANA', '123');
+insert muni values (72,'SANTA MARIA', '123');
+insert muni values (73,'SANTIAGO DE LINIERS', '123');
+insert muni values (74,'SANTO PIPO', '123');
+insert muni values (75,'TRES CAPONES', '123');
+
+insert usuario values (1,'fer', '123', 'Fernando Gonzalez');
+insert usuario values (2,'susi', '123', 'Susana Milano');
+
+insert into plan values (1, 'PLAN TECHO');
+insert into plan values (2, 'PLAN CERRAMIENTOS');
+insert into plan values (3, 'VIV. TIPO MISIONERA');
+insert into plan values (4, 'PISO');
+insert into plan values (5, 'DORMITORIO');
+insert into plan values (6, 'BAÑO CON LAV.');
+insert into plan values (7, 'BAÑO P/ AULA SAT.');
+insert into plan values (8, 'LETRINA ECOLOGICA');
+insert into plan values (9, 'LETRINA CON VENTILACION');
+

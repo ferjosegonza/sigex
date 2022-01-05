@@ -1,0 +1,28 @@
+select 	m.desc_muni as muni, 
+	SUM(i.cant) as cant, 
+	p.desc_plan as plan
+from	muni m, expte e, incluye i, plan p
+where	m.cod_muni=e.cod_muni and
+	m.desc_muni = 'DOS DE MAYO' and
+	p.cod_plan=i.cod_plan and
+	e.num_expte=i.num_expte and
+	e.letra_expte=i.letra_expte and
+	e.anio_expte=i.anio_expte
+group by muni, plan
+order by muni, plan
+
+--------------------------
+
+select 	m.desc_muni as muni, 	
+	SUM(i.cant) as cant, 
+	p.desc_plan as plan
+from	muni m, expte e, incluye i, plan p
+where	m.cod_muni=e.cod_muni and
+	p.cod_plan=i.cod_plan and
+	e.num_expte=i.num_expte and
+	e.letra_expte=i.letra_expte and
+	e.anio_expte=i.anio_expte
+group by muni, plan
+order by muni, plan;
+
+-----------------------------
